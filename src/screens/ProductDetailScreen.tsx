@@ -9,7 +9,6 @@ type Props = NativeStackScreenProps<RootStackParamList, 'ProductDetailScreen'>;
 
 export default function ProductDetailScreen(props: Props) {
   const query = useGetProductByIdQuery(props.route.params.product._id);
-  // const [generateMutation] = useGenerateRandomProductMutation();
 
   return (
     <SafeAreaView style={styles.sav}>

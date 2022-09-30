@@ -28,9 +28,8 @@ export default function AddProductScreen({ navigation }: Props) {
   const [createProduct, { isLoading }] = useAddProductMutation();
 
   async function handleSubmitForm(v: MyFormValues) {
-    console.log(v);
     try {
-      const payload = await createProduct({
+      await createProduct({
         ...v,
         harga: Number(v.harga),
         length: Number(v.length),
@@ -38,7 +37,6 @@ export default function AddProductScreen({ navigation }: Props) {
         height: Number(v.height),
         weight: Number(v.weight),
       }).unwrap();
-      console.log('payload: ', payload);
       navigation.canGoBack() && navigation.goBack();
     } catch (error) {
       console.error('rejected', error);
@@ -47,7 +45,7 @@ export default function AddProductScreen({ navigation }: Props) {
 
   async function handleAddRandomProduct() {
     try {
-      const payload = await createProduct({
+      await createProduct({
         name: 'Random Name',
         description: 'Random Description',
         categoryId: 888,
@@ -58,8 +56,7 @@ export default function AddProductScreen({ navigation }: Props) {
         length: 12,
         weight: 1000,
         id: Math.floor(Math.random() * 1000),
-      });
-      console.log('payload: ', payload);
+      }).unwrap();
       navigation.canGoBack() && navigation.goBack();
     } catch (error) {
       console.error('rejected', error);
@@ -157,9 +154,7 @@ export default function AddProductScreen({ navigation }: Props) {
           )}
         </Formik>
         <TouchableOpacity
-          style={{
-            padding: 10,
-          }}
+          style={{ padding: 10 }}
           onPress={handleAddRandomProduct}>
           <Text style={{ textAlign: 'center' }}>Add Random Product</Text>
         </TouchableOpacity>

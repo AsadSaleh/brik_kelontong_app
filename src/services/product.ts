@@ -42,7 +42,6 @@ export const productApi = createApi({
     addProduct: builder.mutation<number, Omit<Partial<Product>, '_id'>>({
       invalidatesTags: ['Product'],
       query: body => {
-        console.log('body: ', body);
         return {
           url: '/test-product',
           method: 'POST',
