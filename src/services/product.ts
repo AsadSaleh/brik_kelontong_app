@@ -44,7 +44,7 @@ export const productApi = createApi({
       query: body => {
         console.log('body: ', body);
         return {
-          url: '/test-product/post',
+          url: '/test-product',
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export const productApi = createApi({
     generateRandomProduct: builder.mutation<number, any>({
       invalidatesTags: ['Product'],
       query: () => ({
-        url: '/test-product/post',
+        url: '/test-product',
         method: 'POST',
         body: {
           id: 1234,
